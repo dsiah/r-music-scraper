@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+	<title>Reddit Music Scraper</title>
+    <link rel="icon" 
+      type="image/png" 
+      href="favicon.ico">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<style type="text/css">
+  	#login, #loggedin {
+		display: none;
+  	}
+  	
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        display: table;
+        width:50%;
+    }
+
+  	.text-overflow {
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	width: 500px;
+  	}
+
+    ul {
+        list-style-type: none;
+    }
+
+    .accepted {
+        color: green;
+    }
+
+    .jumbotron p {
+        margin-bottom: 15px;
+        font-size: 15px;
+        font-weight: 200;
+    }
+
+    </style> 
+</head>
+<body>
+	<div class="container" id="login">
+        <h1>Log Into Spotify to Access this App</h1>
+        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+        <h2>About</h2>
+        <div class="jumbotron">
+        
+        <h3>What is this?</h3>
+        <p>This is a web scraper that takes the top songs on r/Music and places them in a spotify playlist. Therefore you will need to login to spotify to give this app permission to create a playlist under your profile.</p>
+       
+        <h3>Contact</h3>
+        <p>Made by David Siah, you can see the source for this application, and many other resources, on my <a href="https://www.github.com/dsiah">Github</a>
+        </p>
+        <p>If you have any comments, complaints, or suggestions <a href="mailto:dsiah@villanova.edu?Subject=Spotify-Scraper" target="_top">Email Me</a></p>
+        <div class="text-center img-responsive">
+        <a href="https://www.github.com/dsiah"><img src="github_bw.png" alt="gh-logo" height="30px" width="30px"></a>
+        <a href="mailto:dsiah@villanova.edu?Subject=Spotify-Scraper" target="_top"><img src="email.png" alt="email-logo" height="40px" width="40px"></a>
+        </div>
+        </div>
+	</div>
+	<div id="loggedin">
+        <div id="user-profile">
+        <!-- Template is injected here -->
+        </div>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script id="user-profile-template" type="text/x-handlebars-template">
+		<div class="media container">
+            <h2>Logged in as {{ display_name }} </h2>
+			<div class="pull-left">
+				<img class="media-object" width="75" src="{{ images.0.url }}" />
+			</div>
+			<div class="media-body">
+				<dl class="dl-horizontal">
+					<dt>Id</dt><dd class="idme">{{ id }}</dd>
+					<dt>Spotify URI</dt><dd><a href="{{ external_urls.spotify }}">{{ external_urls.spotify }}</a></dd>
+					<dt>Link</dt><dd><a href="{{ href }}">{{ href }}</a></dd>
+				</dl>
+			</div>
+		</div>
+
+		<div>
+            <div>
+    		    <h2 class="text-center">Trending on r/Music
+                    <button id="search" onclick="$.search()">Search</button>
+                    <button id="create" onclick="$.push()">Create</button>
+                </h2>
+            </div>
+            <ul class="green-light text-center"></ul>
+		</div>
+        <div class="previews">
+        </div>
+    </script>
+
+   	<script src="./script.js"></script>
+</body>
+</html>
