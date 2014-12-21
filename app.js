@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var https = require('https');
 var cheerio = require('cheerio');
 var path = require('path');
-
 var secrets = require('./secrets.js');
 
 var client_id = secrets.client_id; 
@@ -61,7 +60,7 @@ app.get("/api/:query", function (request, response) {
   var html = "";
   var links = [];
 
-  var req = https.get("https://www.reddit.com/r/Music", function (res) {
+  var req = https.get("https://www.reddit.com/r/Music/top", function (res) {
     res.on('data', function (data) {
       html += data;
     });
@@ -80,9 +79,7 @@ app.get("/api/:query", function (request, response) {
     res.on('error', function (err) {
       console.error(err);
     });
-
   });
-
 });
 
 app.get("/callback", function (req, res) {

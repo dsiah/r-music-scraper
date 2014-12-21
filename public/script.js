@@ -101,7 +101,7 @@
         // Due to XSS (Cross Site Scripting) exploit we must hand the web-scraping
         // action to the server, and then wait for the response in order to know 
         // what to query in Spotify.
-        $.ajax('http://dsiah.com/api/' + query).done(function (data) {
+        $.ajax('http://dsiah.com/api/' + query).done(function (data) { 
             var ind = 1;
 
             data.anchors.forEach(function (anchor) {
